@@ -14,7 +14,7 @@ const Home = () => {
 
     
     let todoObj = {
-      id: 1233,
+      id: Date.now(),
       todoText: task
     }
 

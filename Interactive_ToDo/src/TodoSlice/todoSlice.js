@@ -1,7 +1,8 @@
 import {createSlice} from  '@reduxjs/toolkit'
 
 let initialVal = {
-    todoArr: []
+    todoArr: [],
+    todoToEdit: null
 }
 
 let slice = createSlice({
@@ -10,11 +11,8 @@ let slice = createSlice({
 
     reducers:{
         addTodo: (state, action) => {
-            console.log("Error in add todo", action.payload);
             state.todoArr.push(action.payload)
-
             console.log("Added successfully");
-            
         },
         updateTodo: (state,action) => {
             let updatedTodo = action.payload
@@ -26,11 +24,16 @@ let slice = createSlice({
         })
         },
         deleteTodo: (state,action) => {
-            let id = action.payload
-            state.todoArr.filter( (item) => item.id === id)
+            let obj = action.payload
+            console.log("obj hwre ", obj);
+            
+            state.todoArr.filter( (item) => item.id !== obj.id)
+        },
+        getTodoToEdit: (state,action) => {
+            state.todoToEdit = action.payload
         }
     }
 })
 
-export const {addTodo, updateTodo, deleteTodo} = slice.actions
+export const {addTodo, updateTodo, deleteTodo, getTodoToEdit} = slice.actions
 export default slice.reducer;

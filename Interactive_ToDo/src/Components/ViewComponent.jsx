@@ -1,11 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import { motion } from "framer-motion";
-import {useSelector} from 'react-redux'
+import {useSelector, useDispatch} from 'react-redux'
+import { getTodoToEdit, deleteTodo } from '../TodoSlice/todoSlice';
 
 const ViewComponent = () => {
-    const [todo, setTodo] = useState([])
+    const [todoObj, setTodoObj] = useState(null)
     let todoArray = useSelector(state => state.todoArr)
+    let dispatch = useDispatch()
+
+    // dispatch(getTodoToEdit(todoObj))
     console.log(todoArray);
+
+    function updateTodo(item){
+      console.log(item);
+      dispatch(getTodoToEdit(item))
+    }
+
+    function deleteTodoObj(item){
+      //console.log(item);
+     dispatch(deleteTodo(item))
+    }
+    
     
     // let allTodo = JSON.parse(localStorage.getItem("todo"))
     // setTodo(allTodo)
@@ -29,8 +44,8 @@ const ViewComponent = () => {
               todoArray.map((item, index) => (
                     <li key={index} className='list-none align-baseline text-center dark:text-white'>
                         {item.todoText} | 
-                        <span  className='text-sm bg-slate-500 px-2 mx-2 rounded-lg'>Update</span> | 
-                        <span  className='text-sm bg-slate-500 px-2 mx-2 rounded-lg'>Delete</span>
+                        <button className='text-sm bg-slate-500 cursor-pointer px-2 mx-2 rounded-lg' onClick={() => updateTodo(item)}>Update</button> | 
+                        <button className='text-sm bg-slate-500 cursor-pointer px-2 mx-2 rounded-lg' onClick={() => deleteTodoObj(item)}>Delete</button>
                     </li>
                 ))
             )
