@@ -1,25 +1,40 @@
-import React, { useState, useId } from "react";
+import React, { useState, useId, useEffect } from "react";
 import { motion } from "framer-motion";
-import {useDispatch} from 'react-redux'
-import { addTodo } from "../TodoSlice/todoSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { addTodo, updateTodo } from "../TodoSlice/todoSlice";
 
 const Home = () => {
   const [task, setTask] = useState("");
-  const dispatch = useDispatch()
-  let id = useId()
+  const dispatch = useDispatch();
+  let editTodoObj = useSelector((state) => state.todoToEdit);
+
+  useEffect(() => {
+    if (editTodoObj) setTask(editTodoObj.todoText);
+  }, [editTodoObj]); //<-- imp here , coz earlier when i was not passing it then it isnot working, coz useEffect only work one on first render and then when its values changed
+  // on update button click, it iwas not updating the state
 
   function AddToLocalStorage(e) {
     e.preventDefault();
-    console.log(task);
 
-    
-    let todoObj = {
-      id: Date.now(),
-      todoText: task
+    if(!editTodoObj){
+      let todoObj = {
+        id: Date.now(),
+        todoText: task,
+      };
+  
+      dispatch(addTodo(todoObj));
+    }else{
+      let obj = {
+        id: editTodoObj.id,
+        todoText: task
+      }
+      // console.log("Edit object in Home ", obj);
+      
+      dispatch(updateTodo(obj));
     }
 
-    console.log(todoObj);
 
+    setTask("");
 
     // let todoArray = JSON.parse(localStorage.getItem("todo"));
     // console.log(todoArray);
@@ -34,9 +49,7 @@ const Home = () => {
     //   localStorage.setItem("todo", JSON.stringify(todoArray));
     // }
 
-    dispatch(addTodo(todoObj))
-
-    setTask("");
+  
 
     // localStorage.clear()
   }
@@ -64,7 +77,7 @@ const Home = () => {
             type="submit"
             className="text-slate-600 dark:text-white inline-flex items-center justify-center p-2 bg-indigo-500 rounded-md shadow-lg"
           >
-            Add
+            {editTodoObj ? "Update" : "Add"}
           </button>
         </form>
       </div>

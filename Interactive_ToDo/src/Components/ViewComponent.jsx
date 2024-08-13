@@ -18,7 +18,7 @@ const ViewComponent = () => {
 
     function deleteTodoObj(item){
       //console.log(item);
-     dispatch(deleteTodo(item))
+     dispatch(deleteTodo(item)) 
     }
     
     
