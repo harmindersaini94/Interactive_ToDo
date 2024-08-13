@@ -4,15 +4,16 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Home from './Components/Home'
 import ViewComponent from './Components/ViewComponent'
+import {Provider} from 'react-redux'
+import todoStore from './store'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <>
+    <Provider store={todoStore}>
         <Home />
         <ViewComponent />
-    </>
+    </Provider >
   )
 }
 

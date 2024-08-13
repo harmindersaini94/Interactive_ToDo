@@ -1,18 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import { motion } from "framer-motion";
+import {useSelector} from 'react-redux'
 
 const ViewComponent = () => {
     const [todo, setTodo] = useState([])
+    let todoArray = useSelector(state => state.todoArr)
+    console.log(todoArray);
+    
     // let allTodo = JSON.parse(localStorage.getItem("todo"))
     // setTodo(allTodo)
 
-    useEffect(() => {
-        let allTodo = JSON.parse(localStorage.getItem("todo"))
-        console.log(allTodo);
+    // useEffect(() => {
+    //     let allTodo = JSON.parse(localStorage.getItem("todo"))
+    //     console.log(allTodo);
         
-        setTodo(allTodo)
+    //     setTodo(allTodo)
 
-    }, [])
+    // }, [])
   return (
     <>
     <div className="bg-white dark:bg-slate-800 rounded-lg px-6 py-8 ring-1 ring-slate-900/5 shadow-xl mt-4">
@@ -21,10 +25,10 @@ const ViewComponent = () => {
       </h3>
       <div>
         {
-            todo && (
-                todo.map((item, index) => (
+            todoArray && (
+              todoArray.map((item, index) => (
                     <li key={index} className='list-none align-baseline text-center dark:text-white'>
-                        {item} | 
+                        {item.todoText} | 
                         <span  className='text-sm bg-slate-500 px-2 mx-2 rounded-lg'>Update</span> | 
                         <span  className='text-sm bg-slate-500 px-2 mx-2 rounded-lg'>Delete</span>
                     </li>

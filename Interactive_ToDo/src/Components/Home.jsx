@@ -1,25 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, useId } from "react";
 import { motion } from "framer-motion";
+import {useDispatch} from 'react-redux'
+import { addTodo } from "../TodoSlice/todoSlice";
 
 const Home = () => {
   const [task, setTask] = useState("");
+  const dispatch = useDispatch()
+  let id = useId()
 
   function AddToLocalStorage(e) {
     e.preventDefault();
     console.log(task);
 
-    let todoArray = JSON.parse(localStorage.getItem("todo"));
-    console.log(todoArray);
-
-    if (!todoArray) {
-      // means nothing
-      let array = [];
-      array.push(task);
-      localStorage.setItem("todo", JSON.stringify(array));
-    } else {
-      todoArray.push(task);
-      localStorage.setItem("todo", JSON.stringify(todoArray));
+    
+    let todoObj = {
+      id: 1233,
+      todoText: task
     }
+
+    console.log(todoObj);
+
+
+    // let todoArray = JSON.parse(localStorage.getItem("todo"));
+    // console.log(todoArray);
+
+    // if (!todoArray) {
+    //   // means nothing
+    //   let array = [];
+    //   array.push(task);
+    //   localStorage.setItem("todo", JSON.stringify(array));
+    // } else {
+    //   todoArray.push(task);
+    //   localStorage.setItem("todo", JSON.stringify(todoArray));
+    // }
+
+    dispatch(addTodo(todoObj))
 
     setTask("");
 
