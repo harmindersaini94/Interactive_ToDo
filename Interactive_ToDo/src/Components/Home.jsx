@@ -17,12 +17,15 @@ const Home = () => {
     e.preventDefault();
 
     if(!editTodoObj){
-      let todoObj = {
-        id: Date.now(),
-        todoText: task,
-      };
-  
-      dispatch(addTodo(todoObj));
+      if(task !== ""){
+        let todoObj = {
+          id: Date.now(),
+          todoText: task,
+        };
+    
+        dispatch(addTodo(todoObj));
+      }
+
     }else{
       let obj = {
         id: editTodoObj.id,

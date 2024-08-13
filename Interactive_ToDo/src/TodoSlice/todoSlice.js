@@ -23,6 +23,9 @@ let slice = createSlice({
         // item.id === updatedTodo.id ? item.todoText = updateTodo.todoText : item
         item.id === updatedTodo.id ? {...item, todoText:updatedTodo.todoText } : item
       ));
+
+      // Clearing the editObj
+      state.todoToEdit = null
     },
     deleteTodo: (state, action) => {
       let obj = action.payload;
