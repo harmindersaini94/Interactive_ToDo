@@ -34,7 +34,7 @@ const Background = ({ children }) => {
             initial={{ x: -300, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-          className=" mt-2 text-3xl font-bold tracking-tight text-customPurple relative text-center"
+          className=" mt-2 text-3xl font-bold tracking-tight text-customBrown relative text-center"
           ref={workRoles}
         >
           INTERACTIVE TODO
