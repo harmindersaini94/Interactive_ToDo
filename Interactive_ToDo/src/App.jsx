@@ -1,19 +1,19 @@
-import './App.css'
-import Home from './Components/Home'
-import ViewComponent from './Components/ViewComponent'
-import {Provider} from 'react-redux'
-import todoStore from './store'
-import Background from './Components/Background'
+import "./App.css";
+import Home from "./Components/Home";
+import ViewComponent from "./Components/ViewComponent";
+import { Provider } from "react-redux";
+import todoStore from "./store";
+import Background from "./Components/Background";
 
 function App() {
-
   return (
-    <Provider store={todoStore}>
-      <Background />
+    <Background>
+      <Provider store={todoStore}>
         <Home />
         <ViewComponent />
-    </Provider >
-  )
+      </Provider>
+    </Background>
+  );
 }
 
-export default App
+export default App;

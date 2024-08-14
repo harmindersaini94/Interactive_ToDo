@@ -12,31 +12,6 @@ const Home = () => {
 
   useEffect(() => {
     if (editTodoObj) setTask(editTodoObj.todoText);
-
-    const typed = new Typed(workRoles.current, {
-      strings: [
-        "Web Developer",
-        "Coding Enthusiast",
-        "Quick Learner",
-        "Full Stack Developer",
-      ], // Strings to display
-      // startDelay: 200,
-      // typeSpeed: 50,
-      // backSpeed: 50,
-      // backDelay: 500
-      startDelay: 100,
-      typeSpeed: 50,
-      backSpeed: 50,
-      backDelay: 50,
-      smartBackspace: true,
-      loop: true,
-      showCursor: false,
-      cursorChar: "!",
-    });
-    // Destropying
-    return () => {
-      typed.destroy();
-    };
   }, [editTodoObj]); //<-- imp here , coz earlier when i was not passing it then it isnot working, coz useEffect only work one on first render and then when its values changed
   // on update button click, it iwas not updating the state
 
@@ -113,14 +88,14 @@ const Home = () => {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, delay: 0.4 }}
-      className="bg-white dark:bg-slate-800 -mt-5 rounded-lg px-6 py-8 ring-1 ring-slate-900/5 shadow-xl max-w-lg mx-auto"
+      className="relative z-10 bg-white dark:bg-slate-800 m-1 rounded-lg px-6 py-8  ring-1 ring-slate-900/5 shadow-xl max-w-lg mx-auto"
     >
-      <h3
+      {/* <h3
         className="text-cyan-500 -mt-4 text-xl font-bold tracking-wide text-center h-16 overflow-hidden flex items-center justify-center"
         ref={workRoles}
       >
         INTERACTIVE TODO
-      </h3>
+      </h3> */}
       <div>
         <form
           onSubmit={AddToLocalStorage}
