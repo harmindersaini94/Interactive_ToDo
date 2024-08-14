@@ -111,7 +111,7 @@ const Home = () => {
           />
           <button
             type="submit"
-            className="text-black font-bold inline-flex items-center justify-center p-2 bg-customPurple rounded-md shadow-lg w-1/4 sm:w-auto"
+            className="text-customTan font-bold inline-flex items-center justify-center p-2 bg-customBrown rounded-md shadow-lg w-1/4 sm:w-auto"
           >
             {editTodoObj ? "Update" : "Add"}
           </button>

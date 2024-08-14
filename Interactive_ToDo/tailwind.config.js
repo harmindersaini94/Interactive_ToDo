@@ -7,8 +7,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        customBlue: '#51d0de',
-        customPurple: '#bf4aa8'
+        customTan: '#F2D2BD',
+        customBrown: '#5C4033'
       },
     },
   },

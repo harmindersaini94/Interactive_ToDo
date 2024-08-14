@@ -120,28 +120,28 @@ const ViewComponent = () => {
         {todoArray &&
           todoArray.map((item, index) => (
             <div
-              className="bg-customBlue p-6 border-b-4 border-t-4 rounded-3xl border-customPurple w-3/4 sm:w-1/3 lg:w-1/4 xl:w-1/6 hover:scale-110"
+              className="bg-customTan p-6 border-b-4 border-t-4 rounded-3xl border-customBrown w-3/4 sm:w-1/3 lg:w-1/4 xl:w-1/6 hover:scale-110"
               initial={{ x: -400, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.4, delay: 0.4 }}
               key={index}
             >
               <div className="w-full h-64 rounded-3xl flex flex-col justify-between">
-                <p className="text-customPurple font-semibold text-xl break-words text-left">
+                <p className="text-customBrown font-semibold text-xl break-words text-left">
                   {item.todoText}
                 </p>
                 <div className="w-full">
-                  <h3 className="text-gray-400 font-semibold border-b-2 mb-2"></h3>
+                  <h3 className="font-semibold border-b-2 border-customBrown mb-2"></h3>
                   <div className="flex flex-wrap justify-between items-center">
                     <button
-                      className={`p-1 m-1 text-sm font-bold text-black bg-customPurple rounded-lg ${cursor}`}
+                      className={`p-1 px-2 m-1 text-sm font-bold text-customTan bg-customBrown rounded-lg ${cursor}`}
                       disabled={isDisabled}
                       onClick={() => updateTodo(item)}
                     >
                       Update
                     </button>
                     <button
-                      className={`text-sm font-bold text-black bg-customPurple p-1 m-2 rounded-lg ${cursor}`}
+                      className={`text-sm font-bold text-customTan bg-customBrown p-1 px-2 m-2 rounded-lg ${cursor}`}
                       disabled={isDisabled}
                       onClick={() => deleteTodoObj(item)}
                     >
