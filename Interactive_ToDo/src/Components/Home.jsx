@@ -85,11 +85,11 @@ const Home = () => {
     // </motion.div>
 
     <motion.div
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
+      initial={{ x: 300, opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
       transition={{ duration: 0.6, delay: 0.4 }}
       // className="relative z-10 dark:bg-slate-800 m-1 rounded-lg px-6 py-8  ring-1 ring-slate-900/5 shadow-xl max-w-lg mx-auto"
-      className="relative z-10  m-1 r px-6 py-20  ring-1 ring-slate-900/5 shadow-xl max-w-lg mx-auto"
+      className="relative z-10 r px-6 py-20  ring-1 ring-slate-900/5 shadow-xl max-w-lg mx-auto"
     >
       {/* <h3
         className="text-cyan-500 -mt-4 text-xl font-bold tracking-wide text-center h-16 overflow-hidden flex items-center justify-center"

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useDragControls } from "framer-motion";
 import { useSelector, useDispatch } from "react-redux";
 import { getTodoToEdit, deleteTodo } from "../TodoSlice/todoSlice";
 
@@ -119,9 +119,9 @@ const ViewComponent = () => {
       <div className="relative overflow-hidden -top-8 lg:top-6 flex flex-col lg:flex-row w-full flex-wrap content-center items-center justify-center gap-8 p-4">
         {todoArray &&
           todoArray.map((item, index) => (
-            <motion.div
-              className="bg-customBlue p-6 border-b-4 border-t-4 rounded-3xl border-customPurple w-3/4 sm:w-1/3 lg:w-1/4 xl:w-1/6"
-              initial={{ x: 300, opacity: 0 }}
+            <div
+              className="bg-customBlue p-6 border-b-4 border-t-4 rounded-3xl border-customPurple w-3/4 sm:w-1/3 lg:w-1/4 xl:w-1/6 hover:scale-110"
+              initial={{ x: -400, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.4, delay: 0.4 }}
               key={index}
@@ -150,7 +150,7 @@ const ViewComponent = () => {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
       </div>
     </>
