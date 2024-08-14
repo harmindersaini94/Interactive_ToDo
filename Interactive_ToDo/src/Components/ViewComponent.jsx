@@ -5,7 +5,7 @@ import { getTodoToEdit, deleteTodo } from "../TodoSlice/todoSlice";
 
 const ViewComponent = () => {
   const [todoObj, setTodoObj] = useState(null);
-  const [access, setAccess] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(false);
   const [cursor, setCursor] = useState("cursor-pointer");
   let todoArray = useSelector((state) => state.todoArr);
   let editObj = useSelector((state) => state.todoToEdit);
@@ -13,18 +13,21 @@ const ViewComponent = () => {
 
   useEffect(() => {
     if (!editObj) {
-      setAccess(false);
+      setIsDisabled(false);
       setCursor("cursor-pointer");
+      console.log("Inside UseEffect ", isDisabled);
     }
   }, [editObj]);
 
   function updateTodo(item) {
     console.log(item);
-    setAccess(true);
+
     setCursor("cursor-not-allowed");
     console.log(cursor);
-
+    console.log("Inside updateBtn, before dispatch ", isDisabled);
     dispatch(getTodoToEdit(item));
+    setIsDisabled(true);
+    console.log("Inside  updateBtn, after dispatch ", isDisabled);
   }
 
   function deleteTodoObj(item) {
@@ -44,7 +47,7 @@ const ViewComponent = () => {
   // }, [])
   return (
     <>
-      <div className="bg-white dark:bg-slate-800 rounded-lg px-6 py-8 ring-1 ring-slate-900/5 shadow-xl mt-4">
+      {/* <div className="bg-white dark:bg-slate-800 rounded-lg px-6 py-8 ring-1 ring-slate-900/5 shadow-xl mt-4">
         <h3 className="text-slate-900 dark:text-slate-500 mt-5 text-base font-bold tracking-wide ">
           Interactive ToDo
         </h3>
@@ -74,30 +77,83 @@ const ViewComponent = () => {
               </li>
             ))}
         </div>
-      </div>
-
-      {/* <div className="relative overflow-hidden top-16 lg:top-32 flex flex-col lg:flex-row w-full flex-wrap content-center items-center justify-center gap-8 p-4">
-        <motion.div
-          className="bg-slate-800 p-6 border-b-4 border-t-4 rounded-3xl border-cyan-600 "
-          initial={{ x: 300, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-        >
-          <div className="leading-relaxed tracking-wide w-full lg:w-1/8 p-4">
-            <p className="text-cyan-600 font-bold text-lg break-words">
-              Sign Uvsfvfvfvsfvcdcdcdcdc
-              cdcdcdcdcfvcadcdcdcdcdcdcfvrvfrvsfvvsfvdvfrsfvrdp
-            </p>
-            <h3 className="mt-8 mb-2 p-6 text-gray-400 text-xl font-semibold border-b-2"></h3>
-            <span className="text-sm font-semibold bg-slate-500 p-1 m-1 rounded-lg">
-              Update
-            </span>
-            <span className="text-sm font-semibold bg-slate-500 p-1 mx-2 rounded-lg">
-              Delete
-            </span>
-          </div>
-        </motion.div>
       </div> */}
+
+      {/* <div className="relative overflow-hidden top-16 lg:top-14 flex flex-col lg:flex-row w-full flex-wrap content-center items-center justify-center gap-8 p-4">
+        {todoArray &&
+          todoArray.map((item, index) => (
+            <motion.div
+              className="bg-slate-800 p-6 border-b-4 border-t-4 rounded-3xl border-cyan-600 "
+              initial={{ x: 300, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              key={index}
+            >
+              <div className="w-60 h-64 rounded-3xl ">
+                <p className="text-cyan-500 font-semibold text-md break-words text-left ">
+                  {item.todoText}
+                </p>
+                <div className="absolute bottom-7 w-60">
+                  <h3 className=" text-gray-400 font-semibold border-b-2"></h3>
+                  <div className="flex flex-wrap justify-between items-center">
+                    <button
+                      className={`p-1 m-2 text-xs font-bold text-black bg-cyan-500 rounded-lg ${cursor}`}
+                      disabled={isDisabled}
+                      onClick={() => updateTodo(item)}
+                    >
+                      Update
+                    </button>
+                    <button
+                      className={`text-xs font-bold text-black bg-cyan-500 p-1 m-2 rounded-lg ${cursor}`}
+                      disabled={isDisabled}
+                      onClick={() => deleteTodoObj(item)}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+      </div> */}
+
+      <div className="relative overflow-hidden top-16 lg:top-14 flex flex-col lg:flex-row w-full flex-wrap content-center items-center justify-center gap-8 p-4">
+        {todoArray &&
+          todoArray.map((item, index) => (
+            <motion.div
+              className="bg-slate-800 p-6 border-b-4 border-t-4 rounded-3xl border-cyan-600 w-full sm:w-1/2 lg:w-1/3 xl:w-1/4"
+              initial={{ x: 300, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.4, delay: 0.4 }}
+              key={index}
+            >
+              <div className="w-full h-64 rounded-3xl flex flex-col justify-between">
+                <p className="text-cyan-500 font-semibold text-md break-words text-left">
+                  {item.todoText}
+                </p>
+                <div className="w-full">
+                  <h3 className="text-gray-400 font-semibold border-b-2 mb-2"></h3>
+                  <div className="flex flex-wrap justify-between items-center">
+                    <button
+                      className={`p-1 m-2 text-xs font-bold text-black bg-cyan-500 rounded-lg ${cursor}`}
+                      disabled={isDisabled}
+                      onClick={() => updateTodo(item)}
+                    >
+                      Update
+                    </button>
+                    <button
+                      className={`text-xs font-bold text-black bg-cyan-500 p-1 m-2 rounded-lg ${cursor}`}
+                      disabled={isDisabled}
+                      onClick={() => deleteTodoObj(item)}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+      </div>
     </>
   );
 };

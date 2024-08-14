@@ -62,13 +62,13 @@ const Home = () => {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, delay: 0.4 }}
-      className="bg-white dark:bg-slate-800 rounded-lg px-6 py-8 ring-1 ring-slate-900/5 shadow-xl"
+      className="bg-white dark:bg-slate-800 -mt-5  rounded-lg px-6 py-8 ring-1 ring-slate-900/5 shadow-xl"
     >
-      <h3 className="text-slate-900 dark:text-slate-500 mt-5 text-base font-bold tracking-wide">
+      <h3 className="text-cyan-500 -mt-4 text-xl font-bold tracking-wide">
         Interactive ToDo
       </h3>
       <div>
-        <form onSubmit={AddToLocalStorage}>
+        <form onSubmit={AddToLocalStorage} className="flex flex-wrap justify-center items-center">
           <input
             className="w-80 rounded-xl h-11 p-4 m-3"
             type="text"
@@ -84,11 +84,6 @@ const Home = () => {
           </button>
         </form>
       </div>
-
-      {/* <p className="text-slate-500 dark:text-slate-400 mt-2 text-sm">
-        The Zero Gravity Pen can be used to write in any orientation, including
-        upside-down. It even works in outer space.
-      </p> */}
     </motion.div>
   );
 };
