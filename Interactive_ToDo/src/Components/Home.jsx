@@ -88,7 +88,8 @@ const Home = () => {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, delay: 0.4 }}
-      className="relative z-10 bg-white dark:bg-slate-800 m-1 rounded-lg px-6 py-8  ring-1 ring-slate-900/5 shadow-xl max-w-lg mx-auto"
+      // className="relative z-10 dark:bg-slate-800 m-1 rounded-lg px-6 py-8  ring-1 ring-slate-900/5 shadow-xl max-w-lg mx-auto"
+      className="relative z-10  m-1 r px-6 py-20  ring-1 ring-slate-900/5 shadow-xl max-w-lg mx-auto"
     >
       {/* <h3
         className="text-cyan-500 -mt-4 text-xl font-bold tracking-wide text-center h-16 overflow-hidden flex items-center justify-center"
@@ -110,7 +111,7 @@ const Home = () => {
           />
           <button
             type="submit"
-            className="text-slate-600 dark:text-white inline-flex items-center justify-center p-2 bg-cyan-500 rounded-md shadow-lg w-1/4 sm:w-auto"
+            className="text-black font-bold inline-flex items-center justify-center p-2 bg-customPurple rounded-md shadow-lg w-1/4 sm:w-auto"
           >
             {editTodoObj ? "Update" : "Add"}
           </button>

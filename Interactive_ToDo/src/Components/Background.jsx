@@ -31,7 +31,7 @@ const Background = ({ children }) => {
     <div className="relative min-h-screen">
       <div className="fixed inset-0 bg-black">
         <h3
-          className=" bg-gradient-to-r from-pink-300 via-slate-500 to-purple-500 bg-clip-text text-2xl shadow-md font-bold tracking-tight text-transparent mt-4 ml-4"
+          className=" mt-2 text-3xl font-bold tracking-tight text-customPurple relative text-center"
           ref={workRoles}
         >
           INTERACTIVE TODO
