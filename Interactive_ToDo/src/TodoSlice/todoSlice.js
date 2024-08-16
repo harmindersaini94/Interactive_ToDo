@@ -11,9 +11,13 @@ let slice = createSlice({
 
   reducers: {
     addTodo: (state, action) => {
-      state.todoArr.push(action.payload);
+      if (Array.isArray(action.payload)) {
+        action.payload.map((item) => state.todoArr.push(item));
+      } else state.todoArr.push(action.payload);
+
+      // Changing Local Storage
+      localStorage.clear();
       localStorage.setItem("todo", JSON.stringify(state.todoArr));
-      console.log("Added successfully");
     },
     updateTodo: (state, action) => {
       let updatedTodo = action.payload;
@@ -21,7 +25,6 @@ let slice = createSlice({
       console.log("Edit object in Slice ", updatedTodo);
 
       state.todoArr = state.todoArr.map((item) =>
-        // item.id === updatedTodo.id ? item.todoText = updateTodo.todoText : item
         item.id === updatedTodo.id
           ? { ...item, todoText: updatedTodo.todoText }
           : item
@@ -31,6 +34,7 @@ let slice = createSlice({
       state.todoToEdit = null;
 
       // Updating Local Storage as well
+      localStorage.clear();
       localStorage.setItem("todo", JSON.stringify(state.todoArr));
     },
     deleteTodo: (state, action) => {
@@ -39,6 +43,7 @@ let slice = createSlice({
       state.todoArr = state.todoArr.filter((item) => item.id !== obj.id);
 
       // Updating Local Storage as well
+      localStorage.clear();
       localStorage.setItem("todo", JSON.stringify(state.todoArr));
     },
     getTodoToEdit: (state, action) => {
