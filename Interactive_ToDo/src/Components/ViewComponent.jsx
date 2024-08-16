@@ -1,31 +1,42 @@
 import React, { useEffect, useState } from "react";
 import { motion, useDragControls } from "framer-motion";
 import { useSelector, useDispatch } from "react-redux";
-import { getTodoToEdit, deleteTodo } from "../TodoSlice/todoSlice";
+import { getTodoToEdit, deleteTodo, addTodo } from "../TodoSlice/todoSlice";
 
 const ViewComponent = () => {
   const [isDisabled, setIsDisabled] = useState(false);
+  const [todoLs, setTodoLs] = useState([]);
   const [cursor, setCursor] = useState("cursor-pointer");
   let todoArray = useSelector((state) => state.todoArr);
   let editObj = useSelector((state) => state.todoToEdit);
   let dispatch = useDispatch();
 
+      /**
+     * So Here we will check if the state is empty, then we will check if the Local storage is also empty
+     * State will be empty if we refresh, but in that case if we have Todo in local storage we will display them
+     */
+      if (todoArray.length === 0) {
+        // control comes inside means Todo array empty , either there are 0 Todo or user refreshed page
+  
+        // Get data from local storage
+          let tempArr = JSON.parse(localStorage.getItem("todo"));
+          if(tempArr != null && tempArr.length > 0){
+              // dispatch the local storage data to the slice, it will automatically trigger the store and data will be displayed
+              console.log("Data From Local Storage ", tempArr);
+              dispatch(addTodo(tempArr));
+          }
+        console.log(todoArray);
+      }
+
   useEffect(() => {
     if (!editObj) {
       setIsDisabled(false);
       setCursor("cursor-pointer");
-      console.log("Inside UseEffect ", isDisabled);
+      
     }
 
-    /**
-     * So Here we will check if the state is empty, then we will check if the Local storage is also empty
-     * State will be empty if we refresh, but in that case if we have Todo in local storage we will display them
-     */
-    if (todoArray.length === 0) {
-      todoArray = JSON.parse(localStorage.getItem("todo"));
-      console.log(todoArray);
-    }
-  }, [editObj, todoArray]);
+
+  }, [editObj]);
 
   function updateTodo(item) {
     console.log(item);
@@ -127,7 +138,7 @@ const ViewComponent = () => {
 
       <div className="relative overflow-hidden -top-8 lg:top-6 flex flex-col lg:flex-row w-full flex-wrap content-center items-center justify-center gap-8 p-4">
         {todoArray &&
-          todoArray.map((item, index) => (
+          todoArray?.map((item, index) => (
             <div
               className="bg-customTan p-6 border-b-4 border-t-4 rounded-3xl border-customBrown w-3/4 sm:w-1/3 lg:w-1/4 xl:w-1/6 hover:scale-110"
               initial={{ x: -400, opacity: 0 }}
@@ -137,7 +148,7 @@ const ViewComponent = () => {
             >
               <div className="w-full h-64 rounded-3xl flex flex-col justify-between">
                 <p className="text-customBrown font-semibold text-xl break-words text-left">
-                  {item.todoText}
+                  {item?.todoText}
                 </p>
                 <div className="w-full">
                   <h3 className="font-semibold border-b-2 border-customBrown mb-2"></h3>
