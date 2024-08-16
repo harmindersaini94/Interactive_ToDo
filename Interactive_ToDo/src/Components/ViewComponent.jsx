@@ -16,7 +16,16 @@ const ViewComponent = () => {
       setCursor("cursor-pointer");
       console.log("Inside UseEffect ", isDisabled);
     }
-  }, [editObj]);
+
+    /**
+     * So Here we will check if the state is empty, then we will check if the Local storage is also empty
+     * State will be empty if we refresh, but in that case if we have Todo in local storage we will display them
+     */
+    if (todoArray.length === 0) {
+      todoArray = JSON.parse(localStorage.getItem("todo"));
+      console.log(todoArray);
+    }
+  }, [editObj, todoArray]);
 
   function updateTodo(item) {
     console.log(item);
