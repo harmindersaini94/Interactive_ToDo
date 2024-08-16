@@ -7,7 +7,6 @@ const Background = ({ children }) => {
   useEffect(() => {
     const typed = new Typed(workRoles.current, {
       strings: ["INTERACTIVE TODO.", "RESPONSIVE TODO.", "ENGAGING TODO."],
-
       startDelay: 50,
       typeSpeed: 30,
       backSpeed: 40,
